@@ -1,10 +1,10 @@
 import flatpickr from 'flatpickr';
 import 'flatpickr/dist/flatpickr.min.css';
-import 'notiflix/dist/notiflix-3.2.5.min.css';
-import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import Notiflix from 'notiflix';
+// import 'notiflix/dist/notiflix-3.2.6.min.css';
 
-const countingDown = 1000;
-const markers = {
+const MS_PER_SECOND = 1000;
+ const markups = {
   input: document.querySelector('#datetime-picker'),
   btn: document.querySelector('button[data-start]'),
   timer: {
@@ -14,31 +14,33 @@ const markers = {
     minutes: document.querySelector('[data-minutes]'),
     seconds: document.querySelector('[data-seconds]'),
   },
-};
-let isBtnDisabled = null; //button niekatywny
+}
+
+let isBtnDisabled = null;
 let intervalId = null;
 let currentTime = null;
 
 const options = {
-  //FLATPICKR
+  // minDate: 'today',
+  // dateFormat: 'Y-m-d H:i',
   enableTime: true,
   time_24hr: true,
   defaultDate: new Date(),
   minuteIncrement: 1,
   onClose(selectedDates) {
     onCloseFlatPicker(selectedDates);
-    console.log(selectedDates[0]);
   },
 };
 
 setBtnDisabled(true);
-flatpickr(markers.input, options); // wstawia aktualną datę i czas
-markers.btn.addEventListener('click', onClickStartBtn);
+flatpickr(markups.input, options);
+markups.btn.addEventListener('click', handler);
 
-function onClickStartBtn() {
+function handler() {
   setBtnDisabled(true);
   startTimer(currentTime);
 }
+
 function onCloseFlatPicker(selectedDates) {
   const diffTime = selectedDates[0].getTime() - Date.now();
   const isFuture = diffTime > 0;
@@ -49,7 +51,7 @@ function onCloseFlatPicker(selectedDates) {
   } else {
     currentTime = 0;
     setBtnDisabled(true);
-    Notify.failure('Please choose a date in the future', {
+    Notiflix.Notify.failure('Please choose a date in the future', {
       position: 'center-top',
       clickToClose: true,
       timeout: 10000,
@@ -64,11 +66,11 @@ function startTimer(ms) {
     const isFinish = ticTimer();
 
     if (isFinish) clearInterval(intervalId);
-  }, countingDown);
+  }, MS_PER_SECOND);
 }
 
 function ticTimer() {
-  currentTime -= countingDown;
+  currentTime -= MS_PER_SECOND;
   if (currentTime <= 0) return true;
   updateTimer(currentTime);
   return false;
@@ -79,11 +81,11 @@ function updateTimer(ms) {
   updateTimerElements(convertMs(ms));
 }
 
-function updateTimerElements({ days, hours, minutes, seconds }) {
-  markers.timer.days.textContent = addLeadingZero(days);
-  markers.timer.hours.textContent = addLeadingZero(hours);
-  markers.timer.minutes.textContent = addLeadingZero(minutes);
-  markers.timer.seconds.textContent = addLeadingZero(seconds);
+function updateTimerElements({days, hours, minutes, seconds}) {
+  markups.timer.days.textContent = addLeadingZero(days);
+  markups.timer.hours.textContent = addLeadingZero(hours);
+  markups.timer.minutes.textContent = addLeadingZero(minutes);
+  markups.timer.seconds.textContent = addLeadingZero(seconds);
 }
 
 function addLeadingZero(value) {
@@ -92,7 +94,7 @@ function addLeadingZero(value) {
 
 function setBtnDisabled(flag) {
   isBtnDisabled = flag;
-  markers.btn.disabled = flag;
+  markups.btn.disabled = flag;
 }
 
 function convertMs(ms) {
