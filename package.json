@@ -1,5 +1,5 @@
 {
-  "name": "goit-js-hw-09",
+  "name": "goit-js-hw-09-z-css",
   "version": "2.0.0",
   "description": "",
   "homepage": "https://github.com/AgnieszkaCieslak/goit-js-hw-09",
@@ -18,8 +18,8 @@
     "url": "https://github.com/goitacademy/parcel-project-template/issues"
   },
   "dependencies": {
-    "flatpickr": "^4.6.13",
     "modern-normalize": "^1.1.0",
+    "flatpickr": "^4.6.13",
     "notiflix": "^3.2.6"
   },
   "devDependencies": {

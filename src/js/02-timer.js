@@ -1,5 +1,6 @@
 import flatpickr from 'flatpickr';
-import 'flatpickr/dist/flatpickr.min.css';
+import 'flatpickr/dist/themes/dark.css'
+// import 'flatpickr/dist/flatpickr.min.css';
 import Notiflix from 'notiflix';
 // import 'notiflix/dist/notiflix-3.2.6.min.css';
 
@@ -21,8 +22,8 @@ let intervalId = null;
 let currentTime = null;
 
 const options = {
-  // minDate: 'today',
-  // dateFormat: 'Y-m-d H:i',
+  minDate: 'today',
+  dateFormat: 'Y-m-d H:i',
   enableTime: true,
   time_24hr: true,
   defaultDate: new Date(),

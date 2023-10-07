@@ -6,23 +6,25 @@
     <title>Promise generator</title>
     <link rel="stylesheet" href="css/common.css" />
   </head>
-  <body>
-    <p><a href="index.html">Go back</a></p>
+  <body class="body-index">
+    <p class="p-switcher"><a class="text-switcher" href="index.html">Go back</a></p>
 
     <form class="form">
-      <label>
+      <div class="container-promises">
+      <label class="label-promises">
         First delay (ms)
-        <input type="number" name="delay" required />
+        <input class="input-promises" type="number" name="delay" required />
       </label>
-      <label>
+      <label class="label-promises">
         Delay step (ms)
-        <input type="number" name="step" required />
+        <input class="input-promises" type="number" name="step" required />
       </label>
-      <label>
+      <label class="label-promises">
         Amount
-        <input type="number" name="amount" required />
+        <input class="input-promises" type="number" name="amount" required />
       </label>
-      <button type="submit">Create promises</button>
+      <button class="btn-promises" type="submit">Create promises</button>
+    </div>
     </form>
 
     <script src="js/03-promises.js" type="module"></script>
