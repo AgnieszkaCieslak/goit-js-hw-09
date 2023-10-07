@@ -22,7 +22,7 @@ function getFormData(formRef) {
 function onSubmitForm(e) {
   e.preventDefault();
   const { delay, step, amount } = getFormData(refs.form);
-  for (let i = 1; i <= amount; i++) {
+  for (let i = 0; i <= amount; i++) {
     const promise =
       i === 0 ? createPromise(i, delay) : createPromise(i, delay + i * step);
     promise
