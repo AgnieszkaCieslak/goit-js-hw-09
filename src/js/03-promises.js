@@ -22,9 +22,11 @@ function getFormData(formRef) {
 function onSubmitForm(e) {
   e.preventDefault();
   const { delay, step, amount } = getFormData(refs.form);
+
+
   for (let i = 0; i <= amount; i++) {
     const promise =
-      i === 0 ? createPromise(i, delay) : createPromise(i, delay + i * step);
+      i === 0 ? createPromise(i+1, delay) : createPromise(i+1, delay + i * step);
     promise
       .then(({ position, delay }) => {
         Notiflix.Notify.success(`Fulfilled promise ${position} in ${delay}ms`);
