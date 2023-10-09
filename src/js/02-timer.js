@@ -1,11 +1,11 @@
 import flatpickr from 'flatpickr';
-import 'flatpickr/dist/themes/dark.css'
+import 'flatpickr/dist/themes/dark.css';
 // import 'flatpickr/dist/flatpickr.min.css';
 import Notiflix from 'notiflix';
 // import 'notiflix/dist/notiflix-3.2.6.min.css';
 
 const MS_PER_SECOND = 1000;
- const markups = {
+const markups = {
   input: document.querySelector('#datetime-picker'),
   btn: document.querySelector('button[data-start]'),
   timer: {
@@ -15,7 +15,7 @@ const MS_PER_SECOND = 1000;
     minutes: document.querySelector('[data-minutes]'),
     seconds: document.querySelector('[data-seconds]'),
   },
-}
+};
 
 let isBtnDisabled = null;
 let intervalId = null;
@@ -82,7 +82,7 @@ function updateTimer(ms) {
   updateTimerElements(convertMs(ms));
 }
 
-function updateTimerElements({days, hours, minutes, seconds}) {
+function updateTimerElements({ days, hours, minutes, seconds }) {
   markups.timer.days.textContent = addLeadingZero(days);
   markups.timer.hours.textContent = addLeadingZero(hours);
   markups.timer.minutes.textContent = addLeadingZero(minutes);
